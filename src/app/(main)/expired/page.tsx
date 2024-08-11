@@ -17,7 +17,7 @@ const getExpiredTasks = async (): Promise<TaskDocument[]> => {
   return data.tasks as TaskDocument[];
 };
 
-const ExpiredTaskPage = async ({ params }: Params) => {
+const ExpiredTaskPage = async () => {
   const expiredTasks = await getExpiredTasks();
   return (
     <div className="text-gray-800 p-8 h-full overflow-y-auto pb-24">
