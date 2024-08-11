@@ -1,6 +1,17 @@
-import React from "react";
+"use client"
+import { TaskDocument } from "@/models/task";
+import React, { useState } from "react";
 
-const EditTaskForm = () => {
+interface EditTaskFormProps {
+  task:TaskDocument
+}
+
+const EditTaskForm: React.FC<EditTaskFormProps> = ({task}) =>{
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+  const [dueDate, setDueDate] = useState(task.dueDate);
+  const [isCompleted, setIsCompleted] = useState(task.isCompleted);
+
   return (
     <div className="mt-10 mx-auto w-full max-w-sm">
       <form action="">
@@ -12,6 +23,8 @@ const EditTaskForm = () => {
             type="text"
             id="title"
             name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             required
             className="block mt-2 py-1.5 px-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300"
           />
@@ -24,6 +37,8 @@ const EditTaskForm = () => {
             type="text"
             id="description"
             name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             required
             className="block mt-2 py-1.5 px-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300"
           />
@@ -38,6 +53,8 @@ const EditTaskForm = () => {
             name="dueDate"
             min="2020-01-01"
             max="2999-12-31"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
             required
             className="block mt-2 py-1.5 px-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300"
           />
@@ -48,6 +65,8 @@ const EditTaskForm = () => {
             id="isCompleted"
             name="isCompleted"
             className="mr-2 w-4 h-4"
+            checked={isCompleted}
+            onChange={(e) => setIsCompleted(e.target.checked)}
           />
           <label htmlFor="isCompleted" className="text-sm">
             タスクを完了させる
